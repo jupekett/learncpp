@@ -2,6 +2,8 @@
 #include <iostream>
 #include <span>
 
+// This file should compile without errors if your compiler settings support C++20
+
 struct Foo
 {
     int a{};

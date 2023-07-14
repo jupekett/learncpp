@@ -5,6 +5,7 @@
 #include <type_traits>
 
 // This file should compile without errors if your compiler settings support C++17
+
 namespace a::b::c
 {
     inline constexpr std::string_view str{"hello"};
