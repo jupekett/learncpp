@@ -1,5 +1,6 @@
 #include <iostream>
 
+// 6 ways to initialize variables
 // Source: https://www.learncpp.com/cpp-tutorial/variable-assignment-and-initialization/
 int main()
 {
