@@ -17,6 +17,22 @@ int main()
     std::cout << "float:\t\t" << sizeof(float) << " bytes\n";
     std::cout << "double:\t\t" << sizeof(double) << " bytes\n";
     std::cout << "long double:\t" << sizeof(long double) << " bytes\n";
+    std::cout << '\n';
+
+    // least integers
+    std::cout << "least 8:\t" << sizeof(std::int_least8_t) * 8 << " bits\n";
+    std::cout << "least 16:\t" << sizeof(std::int_least16_t) * 8 << " bits\n";
+    std::cout << "least 32:\t" << sizeof(std::int_least32_t) * 8 << " bits\n";
+    std::cout << '\n';
+
+    // fast integers
+    std::cout << "fast 8:\t\t" << sizeof(std::int_fast8_t) * 8 << " bits\n";
+    std::cout << "fast 16:\t" << sizeof(std::int_fast16_t) * 8 << " bits\n";
+    std::cout << "fast 32:\t" << sizeof(std::int_fast32_t) * 8 << " bits\n";
+    std::cout << '\n';
+
+    // size_t
+    std::cout << "size_t:\t\t" << sizeof(std::size_t) * 8 << " bits\n";
 
     return 0;
 }
