@@ -129,7 +129,7 @@ You can pass in any of these without making a copy:
 - std::string_view
 
 Alternative would be:
-const st d::string&
+const std::string&
 , but learn more about pointers first.
 */
 void printStringView(std::string_view str)
@@ -170,7 +170,7 @@ void constexprExample()
     std::cout << "=========== constexprExample ===============" << '\n';
 
     constexpr std::string_view strV{"constant string_view"}; // strV is a string symbolic constant
-    std::cout << strV << '\n';                               // s will be replaced with the constant at compile time
+    std::cout << strV << '\n';                               // strV will be replaced with the constant at compile time
 
     // std::string got constexpr in C++20, but it has some limitations.
     // See some documentation if you want to learn.
@@ -189,7 +189,7 @@ void stringViewInvalidationExample()
     std::cout << sv << '\n';       // UB
 
     sv = s;                  // sv is now viewing s again --> revalidated
-    std::cout << sv << '\n'; // prints "Hello universe"
+    std::cout << sv << '\n'; // prints the expected message
 }
 
 void stringViewModifiersExample()
