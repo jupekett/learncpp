@@ -3,6 +3,7 @@
 // C++20
 // `consteval` forces a function to execute at compile-time instead of runtime
 // --> performance increase
+// Also called "immediate functions"
 consteval int greaterConsteval(int x, int y)
 {
     return (x > y ? x : y);
