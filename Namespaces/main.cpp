@@ -4,7 +4,7 @@
 
 namespace Foo
 {
-    int doSomething(int x, int y)
+    int calculateSomething(int x, int y)
     {
         return x + y;
     }
@@ -12,7 +12,7 @@ namespace Foo
 
 namespace Bar
 {
-    int doSomething(int x, int y)
+    int calculateSomething(int x, int y)
     {
         return x - y;
     }
@@ -52,27 +52,72 @@ namespace Foo::Goo
     }
 }
 
+/*
+Unnamed namespace
+- all identifiers inside are part of parent namespace
+- all identifiers inside are treated as if they have internal linkage
+--> cannot be seen outside of this file
+--> good if have lots of identifiers and don't want to modify each for internal linkage
+*/
+namespace
+{
+    // this function can only be accessed in this file.
+    // --> same as declaring a function as `static`
+    void doSomething()
+    {
+        std::cout << "Hi from unnamed namespace\n";
+    }
+}
+
+/*
+Inline namespaces
+- all identifiers inside are part of parent namespace (just like unnamed namespace)
+- doesn't affect linkage (unlike unnamed namespace)
+--> often used for versioning of content, see main function.
+*/
+inline namespace V1
+{
+    void printSomething() // this is the "default" version of printSomething due to inline
+    {
+        std::cout << "V1\n";
+    }
+}
+
+namespace V2
+{
+    void printSomething()
+    {
+        std::cout << "V2\n";
+    }
+}
+
 int main()
 {
-    // multiple namespaces
-    std::cout << Foo::doSomething(4, 3) << '\n';
-    std::cout << Bar::doSomething(4, 3) << '\n';
+    std::cout << "===== multiple namespaces ======\n";
+    std::cout << Foo::calculateSomething(4, 3) << '\n';
+    std::cout << Bar::calculateSomething(4, 3) << '\n';
 
-    // global vs your namespace
+    std::cout << "===== global vs your namespace ======\n";
     print();
     ::print();
     Bar::print();
 
-    // namespace from external file
+    std::cout << "===== namespace from external file ======\n";
     std::cout << BasicMath::add(4, 3) << '\n';
 
-    // nested namespaces
+    std::cout << "===== nested namespaces ======\n";
     Bar::Baz::print();
     Foo::Goo::print();
 
-    // namespace alias
+    std::cout << "===== namespace alias ======\n";
     namespace Shorter = Foo::Goo;
     Shorter::print();
+
+    std::cout << "===== unnamed namespace ======\n";
+    V1::printSomething(); // calls the V1 version
+    V2::printSomething(); // calls the V2 version
+    printSomething();     // calls the inline version (which is V1)
+    // --> preserves functionality of existing programs, while allowing V2 when you want
 
     return 0;
 }
